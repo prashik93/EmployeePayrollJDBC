@@ -5,16 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class EmployeePayrollDBServiceConnection {
-    private Connection getConnection() throws SQLException {
-        String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service?useSSL=false";
-        String userName = "root";
-        String password = "root";
-        Connection connection;
+    public Connection getConnection() throws SQLException {
+        String DB_URL = "jdbc:mysql://localhost:3306/employee_payroll_db";
+        String USER = "root";
+        String PASS = "root";
 
-        System.out.println("Connecting to the database : "+jdbcURL);
-        connection = DriverManager.getConnection(jdbcURL, userName, password);
-        System.out.println("Connection is Succcessfully Established!! "+connection);
-
-        return connection;
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            if(conn!=null)
+            {
+                System.out.println("\nConnected to Database..");
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return conn;
     }
 }
